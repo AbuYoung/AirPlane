@@ -7,13 +7,14 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 //import java.nio.Buffer;
 
-class Background extends JPanel implements KeyListener {
+class Background extends JPanel{
 
-    private static BufferedImage SkyPic;//背景图片
-    private static BufferedImage Hero;//主机
-    //private static BufferedImage Enemy;//敌机
-    private int x;//飞机的 x 坐标
-    private int y;//飞机的 y 坐标
+    /*
+    private static BufferedImage SkyPic;//&#x80cc;&#x666f;&#x56fe;&#x7247;
+    private static BufferedImage Hero;//&#x4e3b;&#x673a;
+    //private static BufferedImage Enemy;//&#x654c;&#x673a;
+    private int x;//&#x98de;&#x673a;&#x7684; x &#x5750;&#x6807;
+    private int y;//&#x98de;&#x673a;&#x7684; y &#x5750;&#x6807;
 
     private boolean State_UP;
     private boolean State_DOWN;
@@ -43,11 +44,6 @@ class Background extends JPanel implements KeyListener {
         //g.drawImage(Enemy,200,0,null);
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
     private void move(){
         if (State_UP && y != 0)
             y--;
@@ -58,6 +54,12 @@ class Background extends JPanel implements KeyListener {
         if (State_RIGHT && x <= 644)
             x++;
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
@@ -97,4 +99,5 @@ class Background extends JPanel implements KeyListener {
                 break;
         }
     }
+    */
 }
