@@ -8,7 +8,7 @@ public class Game implements KeyListener {
     private boolean State_LEFT;
     private boolean State_RIGHT;
 
-    private void move() {
+    /*private void move() {
         if (State_UP && y != 0)
             y--;
         if(State_DOWN && y <= 1347)
@@ -17,7 +17,7 @@ public class Game implements KeyListener {
             x--;
         if(State_RIGHT && x <= 644)
             x++;
-    }
+    }*/
 
     @Override
     public void keyTyped(KeyEvent e) {

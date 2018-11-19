@@ -1,18 +1,13 @@
-//import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-//import java.nio.Buffer;
 
 class Background extends JPanel{
 
-    /*
+
     private static BufferedImage SkyPic;//&#x80cc;&#x666f;&#x56fe;&#x7247;
     private static BufferedImage Hero;//&#x4e3b;&#x673a;
-    //private static BufferedImage Enemy;//&#x654c;&#x673a;
     private int x;//&#x98de;&#x673a;&#x7684; x &#x5750;&#x6807;
     private int y;//&#x98de;&#x673a;&#x7684; y &#x5750;&#x6807;
 
@@ -55,49 +50,4 @@ class Background extends JPanel{
             x++;
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_UP:
-                State_UP=true;
-                break;
-            case KeyEvent.VK_DOWN:
-                State_DOWN=true;
-                break;
-            case KeyEvent.VK_LEFT:
-                State_LEFT=true;
-                break;
-            case KeyEvent.VK_RIGHT:
-                State_RIGHT=true;
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                State_UP = false;
-                break;
-            case KeyEvent.VK_DOWN:
-                State_DOWN = false;
-                break;
-            case KeyEvent.VK_LEFT:
-                State_LEFT = false;
-                break;
-            case KeyEvent.VK_RIGHT:
-                State_RIGHT = false;
-                break;
-            default:
-                break;
-        }
-    }
-    */
 }

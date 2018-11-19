@@ -12,8 +12,6 @@ public class plane extends JPanel{
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         mainFrame.add(Sky);
-        mainFrame.addKeyListener(Sky);//监听 Sky 对象的输入事件
-        //mainFrame.remove(Sky);
     }
 
     @Override
