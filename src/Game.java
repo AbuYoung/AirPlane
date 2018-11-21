@@ -1,7 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+
+import static java.lang.Thread.sleep;
 
 class Game extends JPanel implements KeyListener {
 
@@ -12,9 +16,25 @@ class Game extends JPanel implements KeyListener {
     private int y=200;
 
     public void paint(Graphics g) {
+        try {
             movePic();
-            g.drawImage(Hero.HeroPic,x,y,null);
-            g.drawImage(Enemy.EnemyPic,0,0,null);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        g.drawImage(BackgroundPic,0,0,null);
+        g.drawImage(Hero.HeroPic,x,y,null);
+        g.drawImage(Enemy.EnemyPic,0,0,null);
+
+    }
+
+    private static BufferedImage BackgroundPic;
+
+    static {
+        try {
+            BackgroundPic = ImageIO.read(Game.class.getResource("/img/src.jpg"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean State_UP;
@@ -22,7 +42,7 @@ class Game extends JPanel implements KeyListener {
     private boolean State_LEFT;
     private boolean State_RIGHT;
 
-    private void movePic() {
+    private void movePic() throws InterruptedException {
         if (State_UP && y > 0)
             y = y - newHero.Speed;
         if(State_DOWN && y < 470)
@@ -31,6 +51,7 @@ class Game extends JPanel implements KeyListener {
             x = x - newHero.Speed;
         if(State_RIGHT && x < 320)
             x = x + newHero.Speed;
+        sleep(10);
     }
 
     @Override
