@@ -1,9 +1,11 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-class Title extends JPanel {
+class Title extends JPanel implements KeyListener {
 
     private static BufferedImage BeginPic;
     static {
@@ -14,16 +16,30 @@ class Title extends JPanel {
         }
     }
 
-    public boolean Begin = true;
     public void paint(Graphics g){
-        if(Begin){
-            g.drawImage(BeginPic,0,0,null);
-            try {
-                Thread.sleep(3000);
-                Begin = false;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        g.drawImage(BeginPic,0,0,null);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+            PlaneGame.GAME_STATE = Constant.GAME_START;
+            PlaneGame.STATE = 2;
+            System.out.println(PlaneGame.STATE);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+            PlaneGame.GAME_STATE = Constant.GAME_START;
+            PlaneGame.STATE = 2;
+            System.out.println(PlaneGame.STATE);
         }
     }
 

@@ -1,22 +1,18 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 class Enemy{
 
-    private static BufferedImage Enemy;
-    //private int x;
-    //private int y;
+    int Speed = 10;
+
+    static BufferedImage EnemyPic;
 
     static {
         try {
-            Enemy = ImageIO.read(Enemy.class.getResource("img/Enemy.png"));
+            EnemyPic = ImageIO.read(Enemy.class.getResource("img/Enemy.png"));
         }catch (Exception e){
             e.printStackTrace();
         }
     }
-    private Random EnemyMove = new Random();
-    int ran = EnemyMove.nextInt(20);
-
 
 }
