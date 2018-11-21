@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 
 class Hero {
 
-    int Speed = 10;
+    int Speed = 3;
 
     static BufferedImage HeroPic;
 

@@ -3,18 +3,18 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Game extends JPanel implements KeyListener {
+class Game extends JPanel implements KeyListener {
 
     private Hero newHero = new Hero();
     //private Enemy newEnemy = new Enemy();
 
-    private int x=0;
-    private int y=0;
+    private int x=100;
+    private int y=200;
 
-    @Override
     public void paint(Graphics g) {
-        g.drawImage(Hero.HeroPic,x,y,null);
-        g.drawImage(Enemy.EnemyPic,x+10,y+10,null);
+            movePic();
+            g.drawImage(Hero.HeroPic,x,y,null);
+            g.drawImage(Enemy.EnemyPic,0,0,null);
     }
 
     private boolean State_UP;
@@ -23,13 +23,13 @@ public class Game extends JPanel implements KeyListener {
     private boolean State_RIGHT;
 
     private void movePic() {
-        if (State_UP && y != 0)
+        if (State_UP && y > 0)
             y = y - newHero.Speed;
-        if(State_DOWN && y <= 1347)
+        if(State_DOWN && y < 470)
             y = y + newHero.Speed;
-        if(State_LEFT && x != 0)
+        if(State_LEFT && x > 0)
             x = x - newHero.Speed;
-        if(State_RIGHT && x <= 644)
+        if(State_RIGHT && x < 320)
             x = x + newHero.Speed;
     }
 

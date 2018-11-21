@@ -1,33 +1,30 @@
 import javax.swing.*;
-import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PlaneGame extends JPanel {
 
     private static JFrame mainFrame = new JFrame("Plane War Game");
-    private static Title titleFrame = new Title();
-    private static Game newGame = new Game();
+    private static PlaneGame GAME = new PlaneGame();
 
     static int STATE;
     static int GAME_STATE;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
+
         PrepareGUI();
         STATE = 1;
         GAME_STATE = Constant.GAME_TITLE;
-        while(true){
+
+        while(STATE < 3){
             switch (GAME_STATE){
                 case Constant.GAME_TITLE:
-                    Title();
-                    System.out.println("3");
-                    mainFrame.remove(titleFrame);
+                    GAME.Title();
                     GAME_STATE = Constant.GAME_START;
                     break;
                 case Constant.GAME_START:
-                    Game();
+                    GAME.Game();
                     break;
-                case 3:
-
+                default:
+                    break;
             }
         }
     }
@@ -40,21 +37,32 @@ public class PlaneGame extends JPanel {
         mainFrame.setResizable(false);
     }
 
-    private static void Title() {
+
+    private void Title() {
+        Title titleFrame = new Title();
+        titleFrame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
         mainFrame.addKeyListener(titleFrame);
         mainFrame.add(titleFrame);
-        while (STATE == 1){
+        while (STATE == 1) {
+            SwingUtilities.updateComponentTreeUI(mainFrame);
             titleFrame.repaint();
-            System.out.println("2+ "+ STATE);
-            if (STATE == 2)
-                break;
         }
+        mainFrame.remove(titleFrame);
+        mainFrame.removeKeyListener(titleFrame);
     }
 
-    private static void Game(){
+
+    private void Game(){
+        Game newGame = new Game();
+        newGame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
         mainFrame.add(newGame);
         mainFrame.addKeyListener(newGame);
-        newGame.setVisible(true);
+        while (STATE == 2) {
+            SwingUtilities.updateComponentTreeUI(mainFrame);
+            newGame.repaint();
+        }
+        mainFrame.remove(newGame);
+        mainFrame.removeKeyListener(newGame);
     }
 
 }

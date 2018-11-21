@@ -30,17 +30,12 @@ class Title extends JPanel implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_SPACE) {
             PlaneGame.GAME_STATE = Constant.GAME_START;
             PlaneGame.STATE = 2;
-            System.out.println(PlaneGame.STATE);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-            PlaneGame.GAME_STATE = Constant.GAME_START;
-            PlaneGame.STATE = 2;
-            System.out.println(PlaneGame.STATE);
-        }
+
     }
 
 }

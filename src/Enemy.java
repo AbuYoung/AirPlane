@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 
 class Enemy{
 
-    int Speed = 10;
+    int Speed = 1;
 
     static BufferedImage EnemyPic;
 
