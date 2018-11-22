@@ -1,12 +1,12 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.Random;
+import java.awt.*;
 
-class Enemy{
+public class Enemy extends JPanel {
 
-    int Speed = 1;
-
-    static BufferedImage EnemyPic;
+    private static BufferedImage EnemyPic;
 
     static {
         try {
@@ -16,6 +16,20 @@ class Enemy{
         }
     }
 
+    private Random genRanOfEnemy = new Random();
 
+    //敌人生成
+    //BUG 在这里
+    public void paint(Graphics g){
 
+        int numOfEnemy = genRanOfEnemy.nextInt(5);
+        
+        while(numOfEnemy != 0){
+            numOfEnemy -= 1;
+            int x_OfEnemy = genRanOfEnemy.nextInt(400);
+            int y_OfEnemy = genRanOfEnemy.nextInt(300);
+            g.drawImage(EnemyPic,x_OfEnemy,y_OfEnemy,null);
+            System.out.println("1");
+        }
+    }
 }

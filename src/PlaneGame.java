@@ -37,7 +37,6 @@ public class PlaneGame extends JPanel {
         mainFrame.setResizable(false);
     }
 
-
     private void Title() {
         Title titleFrame = new Title();
         titleFrame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
@@ -54,13 +53,16 @@ public class PlaneGame extends JPanel {
 
     private void Game(){
         Game newGame = new Game();
-        newGame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
         mainFrame.add(newGame);
         mainFrame.addKeyListener(newGame);
+        newGame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
+
         while (STATE == 2) {
             SwingUtilities.updateComponentTreeUI(mainFrame);
             newGame.repaint();
+            newGame.paintEnemy();//BUG 在这里
         }
+
         mainFrame.remove(newGame);
         mainFrame.removeKeyListener(newGame);
     }

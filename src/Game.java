@@ -9,7 +9,7 @@ import static java.lang.Thread.sleep;
 class Game extends JPanel implements KeyListener {
 
     private Hero newHero = new Hero();
-    //private Enemy newEnemy = new Enemy();
+    private Enemy newEnemy = new Enemy();
 
     private int x=100;
     private int y=200;
@@ -25,12 +25,16 @@ class Game extends JPanel implements KeyListener {
         g.drawImage(BackgroundPic_0,BGx,BGy,null);
         g.drawImage(BackgroundPic_1,BGx,BGy-600,null);
         g.drawImage(Hero.HeroPic,x,y,null);
-        g.drawImage(Enemy.EnemyPic,0,0,null);
-
     }
 
-    private static BufferedImage BackgroundPic_0,BackgroundPic_1;
+    //调用 Enemy
+    //BUG 在这里
+    void paintEnemy(){
+        newEnemy.repaint();
+    }
 
+    //背景图片导入
+    private static BufferedImage BackgroundPic_0,BackgroundPic_1;
     static {
         try {
             BackgroundPic_0 = ImageIO.read(Game.class.getResource("/img/src.jpg"));
@@ -40,6 +44,10 @@ class Game extends JPanel implements KeyListener {
         }
     }
 
+    /*
+    *
+    * 移动坐标变化
+    * */
     private boolean State_UP;
     private boolean State_DOWN;
     private boolean State_LEFT;
@@ -57,7 +65,7 @@ class Game extends JPanel implements KeyListener {
             x = x + newHero.Speed;
         //背景滚动
         if(BGy == 600) {
-            BGy = 0;
+            BGy = 0;BGx = 0;
         } else {
             BGy += 3;
         }
