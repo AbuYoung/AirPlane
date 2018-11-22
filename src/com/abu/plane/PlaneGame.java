@@ -1,3 +1,5 @@
+package com.abu.plane;
+
 import javax.swing.*;
 
 public class PlaneGame extends JPanel {
@@ -31,7 +33,7 @@ public class PlaneGame extends JPanel {
 
     private static void PrepareGUI(){
         mainFrame.setVisible(true);
-        mainFrame.setSize(Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
+        mainFrame.setSize(Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
@@ -39,7 +41,7 @@ public class PlaneGame extends JPanel {
 
     private void Title() {
         Title titleFrame = new Title();
-        titleFrame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
+        titleFrame.setBounds(0,0, Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
         mainFrame.addKeyListener(titleFrame);
         mainFrame.add(titleFrame);
         while (STATE == 1) {
@@ -55,7 +57,7 @@ public class PlaneGame extends JPanel {
         Game newGame = new Game();
         mainFrame.add(newGame);
         mainFrame.addKeyListener(newGame);
-        newGame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
+        newGame.setBounds(0,0, Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
 
         while (STATE == 2) {
             SwingUtilities.updateComponentTreeUI(mainFrame);

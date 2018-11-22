@@ -1,9 +1,12 @@
+package com.abu.plane;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+
 import static java.lang.Thread.sleep;
 
 class Game extends JPanel implements KeyListener {
@@ -27,7 +30,6 @@ class Game extends JPanel implements KeyListener {
         g.drawImage(Hero.HeroPic,x,y,null);
     }
 
-    //调用 Enemy
     //BUG 在这里
     void paintEnemy(){
         newEnemy.repaint();
@@ -37,8 +39,8 @@ class Game extends JPanel implements KeyListener {
     private static BufferedImage BackgroundPic_0,BackgroundPic_1;
     static {
         try {
-            BackgroundPic_0 = ImageIO.read(Game.class.getResource("/img/src.jpg"));
-            BackgroundPic_1 = ImageIO.read(Game.class.getResource("/img/src.jpg"));
+            BackgroundPic_0 = ImageIO.read(Game.class.getResource("/com/abu/plane/img/src.jpg"));
+            BackgroundPic_1 = ImageIO.read(Game.class.getResource("/com/abu/plane/img/src.jpg"));
         } catch (Exception e) {
             e.printStackTrace();
         }

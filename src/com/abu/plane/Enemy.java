@@ -1,8 +1,10 @@
+package com.abu.plane;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-import java.awt.*;
 
 public class Enemy extends JPanel {
 
@@ -10,7 +12,7 @@ public class Enemy extends JPanel {
 
     static {
         try {
-            EnemyPic = ImageIO.read(Enemy.class.getResource("img/Enemy.png"));
+            EnemyPic = ImageIO.read(Enemy.class.getResource("com/abu/plane/img/Enemy.png"));
         }catch (Exception e){
             e.printStackTrace();
         }
