@@ -16,7 +16,7 @@ public class PlaneGame extends JPanel {
         STATE = 1;
         GAME_STATE = Constant.GAME_TITLE;
 
-        while(STATE < 3){
+        while(STATE < 4){
             switch (GAME_STATE){
                 case Constant.GAME_TITLE:
                     GAME.Title();
@@ -24,6 +24,9 @@ public class PlaneGame extends JPanel {
                     break;
                 case Constant.GAME_START:
                     GAME.Game();
+                    break;
+                case Constant.GAME_DEAD:
+                    GAME.Dead();
                     break;
                 default:
                     break;
@@ -65,6 +68,19 @@ public class PlaneGame extends JPanel {
 
         mainFrame.remove(newGame);
         mainFrame.removeKeyListener(newGame);
+    }
+
+    private void Dead(){
+        Dead deadFrame = new Dead();
+        deadFrame.setBounds(0,0,Constant.WINDOW_WIDTH,Constant.WINDOW_HEIGHT);
+        mainFrame.addKeyListener(deadFrame);
+        mainFrame.add(deadFrame);
+        while (STATE == 3) {
+            SwingUtilities.updateComponentTreeUI(mainFrame);
+            deadFrame.repaint();
+        }
+        mainFrame.remove(deadFrame);
+        mainFrame.removeKeyListener(deadFrame);
     }
 
 }

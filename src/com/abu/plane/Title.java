@@ -1,8 +1,8 @@
 package com.abu.plane;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -18,6 +18,7 @@ class Title extends JPanel implements KeyListener {
         }
     }
 
+    @Override
     public void paint(Graphics g){
         g.drawImage(BeginPic,0,0,null);
     }

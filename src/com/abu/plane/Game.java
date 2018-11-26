@@ -13,14 +13,13 @@ import static java.lang.Thread.sleep;
 class Game extends JPanel implements KeyListener {
 
     private Hero newHero = new Hero();
-    private Hit Hit = new Hit();
     private ArrayList<Enemy> Enemy_S = new ArrayList<>();
     private ArrayList<Bullet> GenBullet = new ArrayList<>();
 
     Game(){
-        for(int i = 0; i < 10; i++)
-            Enemy_S.add(new Enemy((int)(Math.random()*Constant.WINDOW_WIDTH),
-                    (int)(Math.random()*(-1)*400)));
+        for(int i = 0; i < 5; i++)
+            Enemy_S.add(new Enemy((int)(Math.random()*300),
+                    (int)(Math.random()*(-1)*100)));
     }
 
     private int Hero_X = 100;private int Hero_Y = 200;//飞机的坐标
@@ -42,28 +41,27 @@ class Game extends JPanel implements KeyListener {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (Enemy_S.get(i).local_y > 600) {
-                Enemy_S.get(i).local_y = (int) (Math.random() * (-1) * Constant.WINDOW_HEIGHT);
+                Enemy_S.get(i).local_y = (int) (Math.random() * (-1) * 350);
             } else {
-                if (Hit.HitEffort()) {
-                    this.Enemy_S.get(i).remove(i);
-                } else {
-                    this.Enemy_S.get(i).paint(g);
+                this.Enemy_S.get(i).paint(g);
+            }
+        }
+
+        for (int i = 0; i < GenBullet.size(); i++) {
+            GenBullet.get(i).paint(g);
+            for (int j = 0; j < 5; j++){
+                if (HitEffort(this.GenBullet.get(i).local_x,
+                        this.GenBullet.get(i).local_y,
+                        this.Enemy_S.get(j).local_x,
+                        this.Enemy_S.get(j).local_y)){
+                    Enemy_S.get(j).local_y = (int) (Math.random() * (-1) * 350);
                 }
             }
         }
-
-        for (int i = 0; i < 10; i++) {
-            moveBullet(i, g);
-            GenBullet.add(new Bullet(Hero_X,Hero_Y));
-            if (GenBullet.get(i).local_y < 0) {
-                GenBullet.get(i).local_x = Hero_X;
-                GenBullet.get(i).local_y = Hero_Y;
-            }
-        }
+        Dead();
     }
-
 
     //背景图片导入
     private static BufferedImage BackgroundPic_0,BackgroundPic_1;
@@ -84,7 +82,6 @@ class Game extends JPanel implements KeyListener {
     private boolean State_DOWN;
     private boolean State_LEFT;
     private boolean State_RIGHT;
-    private boolean space;
 
     private void movePic() throws InterruptedException {
         //主角飞机的控制
@@ -104,11 +101,6 @@ class Game extends JPanel implements KeyListener {
         }
         //延时控制
         sleep(10);
-    }
-
-    private void moveBullet(int i, Graphics g){
-        if (space)
-            this.GenBullet.get(i).paint(g);
     }
 
     @Override
@@ -132,7 +124,7 @@ class Game extends JPanel implements KeyListener {
                 State_RIGHT=true;
                 break;
             case KeyEvent.VK_SPACE:
-                space = true;
+                this.GenBullet.add(new Bullet(Hero_X,Hero_Y));
                 break;
             default:
                 break;
@@ -155,11 +147,27 @@ class Game extends JPanel implements KeyListener {
             case KeyEvent.VK_RIGHT:
                 State_RIGHT = false;
                 break;
-            case KeyEvent.VK_SPACE:
-                space = false;
-                break;
             default:
                 break;
         }
     }
+
+    private boolean HitEffort(int Bullet_x, int Bullet_y, int Enemy_x, int Enemy_y){
+        boolean X = (Bullet_x >= Enemy_x && Bullet_x <= Enemy_x + 80);
+        boolean Y = (Bullet_y >= Enemy_y && Bullet_y <= Enemy_y + 130);
+        return X&&Y;
+    }
+
+    private void Dead() {
+        for (int i = 0; i < 5; i++) {
+            boolean X, Y;
+            X = (Hero_X >= this.Enemy_S.get(i).local_x && Hero_X <= this.Enemy_S.get(i).local_x + 80);
+            Y = (Hero_Y >= this.Enemy_S.get(i).local_y && Hero_Y <= this.Enemy_S.get(i).local_y + 130);
+            if (X && Y) {
+                PlaneGame.STATE = 3;
+                PlaneGame.GAME_STATE = Constant.GAME_DEAD;
+            }
+        }
+    }
+
 }
