@@ -11,7 +11,7 @@ class Hero {
 
     static {
         try {
-            HeroPic = ImageIO.read(Hero.class.getResource("/com/abu/plane/img/Hero.png"));
+            HeroPic = ImageIO.read(Hero.class.getResource("/img/Hero.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }

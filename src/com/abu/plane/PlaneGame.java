@@ -52,7 +52,6 @@ public class PlaneGame extends JPanel {
         mainFrame.removeKeyListener(titleFrame);
     }
 
-
     private void Game(){
         Game newGame = new Game();
         mainFrame.add(newGame);
@@ -62,7 +61,6 @@ public class PlaneGame extends JPanel {
         while (STATE == 2) {
             SwingUtilities.updateComponentTreeUI(mainFrame);
             newGame.repaint();
-            newGame.paintEnemy();//BUG 在这里
         }
 
         mainFrame.remove(newGame);

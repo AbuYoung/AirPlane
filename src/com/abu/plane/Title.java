@@ -12,7 +12,7 @@ class Title extends JPanel implements KeyListener {
     private static BufferedImage BeginPic;
     static {
         try {
-            BeginPic = ImageIO.read(Title.class.getResource("/com/abu/plane/img/Title.png"));
+            BeginPic = ImageIO.read(Title.class.getResource("/img/Title.png"));
         } catch (Exception e){
             e.printStackTrace();
         }

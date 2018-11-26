@@ -6,41 +6,50 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.ConcurrentNavigableMap;
 
 import static java.lang.Thread.sleep;
 
 class Game extends JPanel implements KeyListener {
 
+    private ArrayList<Enemy> Enemy_S = new ArrayList<>();
+
+    Game (){
+        for (int i = 0;i < 20; i++)
+            Enemy_S.add(new Enemy((int)(Math.random() * Constant.WINDOW_WIDTH), (int)(Math.random()*(-1)*Constant.WINDOW_WIDTH)));
+    }
+
     private Hero newHero = new Hero();
-    private Enemy newEnemy = new Enemy();
 
-    private int x=100;
-    private int y=200;
+    private int x = 100;
+    private int y = 200;
 
-    private int BGx = 0,BGy = 0;
+    private int BGx = 0, BGy = 0;
 
+    @Override
     public void paint(Graphics g) {
         try {
             movePic();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        g.drawImage(BackgroundPic_0,BGx,BGy,null);
-        g.drawImage(BackgroundPic_1,BGx,BGy-600,null);
-        g.drawImage(Hero.HeroPic,x,y,null);
+        g.drawImage(BackgroundPic_0, BGx, BGy, null);
+        g.drawImage(BackgroundPic_1, BGx, BGy - 600, null);
+        g.drawImage(Hero.HeroPic, x, y, null);
+        for(int i =0 ;i < 20; i++) {
+            this.Enemy_S.get(i).paint(g);
+        }
     }
 
-    //BUG 在这里
-    void paintEnemy(){
-        newEnemy.repaint();
-    }
 
     //背景图片导入
     private static BufferedImage BackgroundPic_0,BackgroundPic_1;
     static {
         try {
-            BackgroundPic_0 = ImageIO.read(Game.class.getResource("/com/abu/plane/img/src.jpg"));
-            BackgroundPic_1 = ImageIO.read(Game.class.getResource("/com/abu/plane/img/src.jpg"));
+            BackgroundPic_0 = ImageIO.read(Game.class.getResource("/img/src.jpg"));
+            BackgroundPic_1 = ImageIO.read(Game.class.getResource("/img/src.jpg"));
         } catch (Exception e) {
             e.printStackTrace();
         }
