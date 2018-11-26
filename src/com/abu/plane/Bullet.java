@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class Bullet extends JPanel {
 
-	private int local_x;
+	int local_x;
 	int local_y;
 
 	Bullet(int a, int b){
@@ -27,8 +27,7 @@ public class Bullet extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		System.out.println("1");
 		g.drawImage(BulletPic,local_x,local_y,null);
-		local_y--;
+		local_y -= 10;
 	}
 }
