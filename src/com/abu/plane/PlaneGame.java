@@ -36,7 +36,7 @@ public class PlaneGame extends JPanel {
         mainFrame.setSize(Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //mainFrame.setResizable(false);
+        mainFrame.setResizable(false);
     }
 
     private void Title() {

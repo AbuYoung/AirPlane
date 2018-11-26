@@ -16,14 +16,18 @@ class Game extends JPanel implements KeyListener {
 
     private Hero newHero = new Hero();
     private ArrayList<Enemy> Enemy_S = new ArrayList<>();
+    private ArrayList<Bullet> GenBullet = new ArrayList<>();
 
-    Game (){
-        for (int i = 0; i < 20; i++)
-            Enemy_S.add(new Enemy((int)(Math.random()*Constant.WINDOW_WIDTH), (int)(Math.random()*(-1)*Constant.WINDOW_WIDTH)));
+    Game(){
+        for(int i = 0; i < 10; i++)
+            Enemy_S.add(new Enemy((int)(Math.random()*Constant.WINDOW_WIDTH),
+                    (int)(Math.random()*(-1)*Constant.WINDOW_HEIGHT)));
+        for(int i = 0; i < 20; i++) {
+            GenBullet.add(new Bullet(Hero_X, Hero_Y));
+        }
     }
 
-    private int x = 100;private int y = 200;//飞机的坐标
-
+    private int Hero_X = 100;private int Hero_Y = 200;//飞机的坐标
     private int BGx = 0, BGy = 0;//背景图片的坐标
 
     /*
@@ -36,14 +40,24 @@ class Game extends JPanel implements KeyListener {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         g.drawImage(BackgroundPic_0, BGx, BGy, null);
         g.drawImage(BackgroundPic_1, BGx, BGy - 600, null);
-        g.drawImage(Hero.HeroPic, x, y, null);
-        for(int i = 0 ;i < 20; i++) {
+        g.drawImage(Hero.HeroPic, Hero_X, Hero_Y, null);
+
+        for(int i = 0; i < 10; i++) {
             if(Enemy_S.get(i).local_y > 600) {
-                Enemy_S.get(i).local_y = (int)(Math.random()*Constant.WINDOW_HEIGHT);
+                Enemy_S.get(i).local_y = (int)(Math.random()*(-1)*Constant.WINDOW_HEIGHT);
             } else {
                 this.Enemy_S.get(i).paint(g);
+            }
+        }
+
+        for(int i = 0; i < 20; i++) {
+            if(GenBullet.get(i).local_y < 0) {
+                GenBullet.get(i).local_y = Hero_Y;
+            } else {
+                this.GenBullet.get(i).paint(g);
             }
         }
     }
@@ -71,14 +85,14 @@ class Game extends JPanel implements KeyListener {
 
     private void movePic() throws InterruptedException {
         //主角飞机的控制
-        if (State_UP && y > 0)
-            y = y - newHero.Speed;
-        if(State_DOWN && y < 470)
-            y = y + newHero.Speed;
-        if(State_LEFT && x > 0)
-            x = x - newHero.Speed;
-        if(State_RIGHT && x < 320)
-            x = x + newHero.Speed;
+        if (State_UP && Hero_Y > 0)
+            Hero_Y = Hero_Y - newHero.Speed;
+        if(State_DOWN && Hero_Y < 470)
+            Hero_Y = Hero_Y + newHero.Speed;
+        if(State_LEFT && Hero_X > 0)
+            Hero_X = Hero_X - newHero.Speed;
+        if(State_RIGHT && Hero_X < 320)
+            Hero_X = Hero_X + newHero.Speed;
         //背景滚动
         if(BGy == 600) {
             BGy = 0;BGx = 0;

@@ -15,8 +15,8 @@ class Enemy extends JPanel {
         local_y = b;//敌人的坐标
     }
 
+    //获取敌人的图片
     private static BufferedImage EnemyPic;
-
     static {
         try {
             EnemyPic = ImageIO.read(Enemy.class.getResource("/img/Enemy.png"));
