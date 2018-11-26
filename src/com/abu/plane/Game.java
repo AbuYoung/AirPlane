@@ -14,20 +14,21 @@ import static java.lang.Thread.sleep;
 
 class Game extends JPanel implements KeyListener {
 
+    private Hero newHero = new Hero();
     private ArrayList<Enemy> Enemy_S = new ArrayList<>();
 
     Game (){
-        for (int i = 0;i < 20; i++)
-            Enemy_S.add(new Enemy((int)(Math.random() * Constant.WINDOW_WIDTH), (int)(Math.random()*(-1)*Constant.WINDOW_WIDTH)));
+        for (int i = 0; i < 20; i++)
+            Enemy_S.add(new Enemy((int)(Math.random()*Constant.WINDOW_WIDTH), (int)(Math.random()*(-1)*Constant.WINDOW_WIDTH)));
     }
 
-    private Hero newHero = new Hero();
+    private int x = 100;private int y = 200;//飞机的坐标
 
-    private int x = 100;
-    private int y = 200;
+    private int BGx = 0, BGy = 0;//背景图片的坐标
 
-    private int BGx = 0, BGy = 0;
-
+    /*
+    绘制画面
+     */
     @Override
     public void paint(Graphics g) {
         try {
@@ -38,8 +39,12 @@ class Game extends JPanel implements KeyListener {
         g.drawImage(BackgroundPic_0, BGx, BGy, null);
         g.drawImage(BackgroundPic_1, BGx, BGy - 600, null);
         g.drawImage(Hero.HeroPic, x, y, null);
-        for(int i =0 ;i < 20; i++) {
-            this.Enemy_S.get(i).paint(g);
+        for(int i = 0 ;i < 20; i++) {
+            if(Enemy_S.get(i).local_y > 600) {
+                Enemy_S.get(i).local_y = (int)(Math.random()*Constant.WINDOW_HEIGHT);
+            } else {
+                this.Enemy_S.get(i).paint(g);
+            }
         }
     }
 

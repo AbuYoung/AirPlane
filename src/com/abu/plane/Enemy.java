@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 
 class Enemy extends JPanel {
 
-    private int local_x, local_y;
+    private int local_x;
+    int local_y;
 
     Enemy(int a,int b) {
         local_x = a;
-        local_y = b;
-
+        local_y = b;//敌人的坐标
     }
 
     private static BufferedImage EnemyPic;
