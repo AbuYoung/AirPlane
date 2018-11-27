@@ -153,16 +153,16 @@ class Game extends JPanel implements KeyListener {
     }
 
     private boolean HitEffort(int Bullet_x, int Bullet_y, int Enemy_x, int Enemy_y){
-        boolean X = (Bullet_x >= Enemy_x && Bullet_x <= Enemy_x + 50);
-        boolean Y = (Bullet_y >= Enemy_y && Bullet_y <= Enemy_y + 100);
+        boolean X = (Bullet_x >= Enemy_x && Bullet_x <= Enemy_x + 60);
+        boolean Y = (Bullet_y >= Enemy_y && Bullet_y <= Enemy_y + 90);
         return X&&Y;
     }
 
     private void Dead() {
         for (int i = 0; i < 5; i++) {
             boolean X, Y;
-            X = (Hero_X >= this.Enemy_S.get(i).local_x && Hero_X <= this.Enemy_S.get(i).local_x + 50);
-            Y = (Hero_Y >= this.Enemy_S.get(i).local_y && Hero_Y <= this.Enemy_S.get(i).local_y + 100);
+            X = (Hero_X >= this.Enemy_S.get(i).local_x - 40 && Hero_X <= this.Enemy_S.get(i).local_x + 50);
+            Y = (Hero_Y >= this.Enemy_S.get(i).local_y - 20 && Hero_Y <= this.Enemy_S.get(i).local_y + 80);
             if (X && Y) {
                 PlaneGame.STATE = 3;
                 PlaneGame.GAME_STATE = Constant.GAME_DEAD;
